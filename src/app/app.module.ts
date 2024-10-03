@@ -9,9 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { OverlayModule } from '@angular/cdk/overlay';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // <-- Import this
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
-import { ReactiveFormsModule } from '@angular/forms';  // Import this if forms are used in this module
+import { ReactiveFormsModule } from '@angular/forms';  
 import { AuthModule } from './feature/auth/auth.module';
 
 @NgModule({

@@ -4,10 +4,10 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CategoryComponent } from './components/category/category.component';
 
 const routes: Routes = [
-    { path: '', component: CategoriesComponent },             // List categories
-    { path: 'add', component: CategoryComponent },            // Add category
-    { path: 'view/:id', component: CategoryComponent },       // View category details
-    { path: 'edit/:id', component: CategoryComponent },       // Edit category
+    { path: '', component: CategoriesComponent },             
+    { path: 'add', component: CategoryComponent },            
+    { path: 'view/:id', component: CategoryComponent },       
+    { path: 'edit/:id', component: CategoryComponent },       
   ];
 
 @NgModule({

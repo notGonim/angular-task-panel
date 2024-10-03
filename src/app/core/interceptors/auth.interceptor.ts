@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/feature/auth/services/auth.service';
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
+  // Intercept all HTTP requests 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const currentUser = this.authService.currentUserValue;
     if (currentUser && currentUser.token) {
@@ -18,4 +19,5 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return next.handle(req);
   }
+  
 }

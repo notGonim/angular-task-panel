@@ -8,7 +8,6 @@ const routes: Routes = [
     { path: 'add', component: ProductComponent },
     { path: 'edit/:id', component: ProductComponent },
     { path: 'view/:id', component: ProductComponent },
-    // Other routes...
   ];
   
 

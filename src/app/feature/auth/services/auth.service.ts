@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://fakestoreapi.com/auth/login';  // API URL for login
+  private apiUrl = 'https://fakestoreapi.com/auth/login';  
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 

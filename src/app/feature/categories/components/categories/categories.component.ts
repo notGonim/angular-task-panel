@@ -8,10 +8,10 @@ import { CategoriesService } from '../../services/categories.service';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-  categories: string[] = [];  // List of category names
+  categories: string[] = []; 
   isLoading = false;
-  showDeletePopup = false;    // Tracks whether the delete popup is visible
-  categoryToDelete: string | null = null;  // The category being deleted
+  showDeletePopup = false;    
+  categoryToDelete: string | null = null; 
 
   constructor(private categoriesService: CategoriesService, private router: Router) {}
 
@@ -46,7 +46,7 @@ export class CategoriesComponent implements OnInit {
  // Trigger the delete popup
  onDeleteCategory(category: string) {
   this.categoryToDelete = category;
-  this.showDeletePopup = true;  // Show delete confirmation popup
+  this.showDeletePopup = true; 
 }
 
 // Confirm deletion of the category
@@ -55,9 +55,6 @@ confirmDelete() {
     this.categories = this.categories.filter(c => c !== this.categoryToDelete);
     this.showDeletePopup = false;
     this.categoryToDelete = null;
-
-    // Perform API delete action if needed
-    // this.categoriesService.deleteCategory(this.categoryToDelete).subscribe(() => this.loadCategories());
   }
 }
 

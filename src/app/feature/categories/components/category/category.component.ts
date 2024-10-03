@@ -21,13 +21,13 @@ export class CategoryComponent implements OnInit {
     private router: Router
   ) {
     this.categoryForm = this.fb.group({
-      name: ['', Validators.required]  // Form control for category name
+      name: ['', Validators.required]  
     });
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.categoryName = params.get('id');  // Get the category ID from the route
+      this.categoryName = params.get('id'); 
 
       // Determine the mode (add, edit, view) based on the route
       if (this.router.url.includes('/add')) {

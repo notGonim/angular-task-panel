@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';  // Make sure FormBuilder and FormGroup are imported
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -14,7 +14,7 @@ export class LoginComponent {
   loginError: string | null = null;
 
   constructor(
-    private fb: FormBuilder,  // Inject the FormBuild
+    private fb: FormBuilder, 
     private authService: AuthService,
     private router: Router
   ) {
@@ -32,7 +32,7 @@ export class LoginComponent {
     this.authService.login(this.loginForm.value).subscribe({
       next: () => {
         this.isLoading = false;
-        this.router.navigate(['/products']);  // Redirect to admin panel on success
+        this.router.navigate(['/products']);  
       },
       error: () => {
         this.isLoading = false;

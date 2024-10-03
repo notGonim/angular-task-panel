@@ -22,32 +22,30 @@ export class ProductsComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'title', 'price', 'category', 'description', 'actions'];
   dataSource: MatTableDataSource<Product> = new MatTableDataSource<Product>();
-  isLoading = true; // Flag to track loading state
-  showDeleteModal = false; // Controls the visibility of the delete modal
-  selectedProductId: number | null = null; // Stores the product ID to delete
-
-  products: any[] = [];           // All products
-  filteredProducts: any[] = [];   // Filtered products
-  categories: string[] = ['electronics', 'jewelery', 'men\'s clothing', 'women\'s clothing'];  // Example categories
-
-
-  limit = 5; // Items per page
-  totalProducts = 100; // This is a placeholder. You should fetch this from the API.
-  sortDirection = 'asc'; // Sort direction (asc/desc)
-  currentPage = 1; // Current page number
-  sortColumn = 'id'; // Column to sort by
+  isLoading = true; 
+  showDeleteModal = false; 
+  selectedProductId: number | null = null;
+  products: any[] = [];           
+  filteredProducts: any[] = [];   
+  categories: string[] = ['electronics', 'jewelery', 'men\'s clothing', 'women\'s clothing'];  //it should be an array of categories fetched from the API but here is hard coded
+  limit = 5; 
+  totalProducts = 100;
+  sortDirection = 'asc'; 
+  currentPage = 1; 
+  sortColumn = 'id'; 
 
   constructor(private productService: ProductsService, public dialog: MatDialog,private router: Router) {}
 
   ngOnInit() {
-    this.fetchProducts(); // Fetch initial products
- this.loadProducts(); // Load products from the API
+     this.fetchProducts(); 
+     this.loadProducts(); 
   }
+
  // Load products from the API
  loadProducts() {
   this.productService.getProducts().subscribe((data) => {
     this.products = data;
-    this.filteredProducts = data;  // Set initial filtered products
+    this.filteredProducts = data; 
   });
 }
 
@@ -75,59 +73,50 @@ filterProducts(searchTerm: string | null, category: string | null) {
 }
   // Fetch products with pagination and sorting
   fetchProducts() {
-    this.isLoading = true; // Start loading
+    this.isLoading = true; 
     this.productService
       .getProducts(this.limit, this.sortDirection, this.currentPage, this.sortColumn)
-      .pipe(finalize(() => (this.isLoading = false))) // Stop loading after request completes
+      .pipe(finalize(() => (this.isLoading = false))) 
       .subscribe((data) => {
         this.dataSource.data = data;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-
-        // Optionally, you can update `totalProducts` dynamically if your API returns the total count
-        // this.totalProducts = someApiResponse.totalProducts;
       });
   }
 
   // Handle sorting change
   sortData(event: any) {
-    this.sortColumn = event.active; // Get column being sorted
-    this.sortDirection = event.direction || 'asc'; // Get sort direction
-    this.fetchProducts(); // Re-fetch products when sorting changes
+    this.sortColumn = event.active; 
+    this.sortDirection = event.direction || 'asc'; 
+    this.fetchProducts(); 
   }
 
   // Handle pagination and perPage change
   pageChanged(event: any) {
-    this.currentPage = event.pageIndex + 1; // Page index is 0-based, so we add 1
-    this.limit = event.pageSize; // Set the new items per page
-    this.fetchProducts(); // Re-fetch products based on new page or limit
+    this.currentPage = event.pageIndex + 1;
+    this.limit = event.pageSize; 
+    this.fetchProducts(); 
   }
-   // Open delete confirmation dialog
-  
-
 
 // Handle delete action
 onDelete(productId: number): void {
   const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent);
-
   dialogRef.afterClosed().subscribe((result) => {
     if (result) {
       this.productService.deleteProduct(productId).subscribe(() => {
-        this.fetchProducts(); // Refresh the table after deletion
+        this.fetchProducts(); 
       });
     }
   });
 }
-
-
-
 
   // Open the delete modal
   openDeleteModal(productId: number): void {
     this.selectedProductId = productId;
     this.showDeleteModal = true;
   }
-// Close the modal
+
+  // Close the modal
 closeModal(): void {
   this.showDeleteModal = false;
   this.selectedProductId = null;
@@ -137,7 +126,7 @@ closeModal(): void {
 confirmDelete(): void {
   if (this.selectedProductId !== null) {
     this.deleteProduct(this.selectedProductId);
-    this.closeModal(); // Close the modal after confirming deletion
+    this.closeModal(); 
   }
 }
 
@@ -147,7 +136,6 @@ deleteProduct(productId: number): void {
     this.fetchProducts();     
  });
 }
-
 
 // Function to navigate to the Add Product page
 onAddProduct() {

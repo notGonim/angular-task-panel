@@ -9,8 +9,8 @@ import { AuthService } from 'src/app/feature/auth/services/auth.service';
 export class HeaderComponent implements OnInit {
   
   @Input() headerTitle: string = '';
+  
   dropdownOpen = false; 
-
 
   constructor(private authService: AuthService) {}
 
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   // Logout function
   logout() {
-    this.authService.logout();  // Call the logout method in AuthService
+    this.authService.logout();  
   }
 
    // Check if the user is authenticated

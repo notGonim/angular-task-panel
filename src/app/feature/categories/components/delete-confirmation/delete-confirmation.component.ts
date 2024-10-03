@@ -6,9 +6,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./delete-confirmation.component.scss']
 })
 export class DeleteConfirmationComponent {
-  @Input() itemName: string | null = null;  // The name of the item being deleted
-  @Output() confirmDelete = new EventEmitter<void>();  // Emit event when confirmed
-  @Output() cancelDelete = new EventEmitter<void>();   // Emit event when cancelled
+  @Input() itemName: string | null = null;  
+  @Output() confirmDelete = new EventEmitter<void>();  
+  @Output() cancelDelete = new EventEmitter<void>(); 
 
   // Trigger confirm action
   onConfirm() {

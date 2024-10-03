@@ -16,7 +16,6 @@
             <span *ngIf="!collapsed">{{ route.name }}</span>
           </a>
   
-          <!-- Handle Sub Routes -->
           <ul *ngIf="route.children && !collapsed" class="ml-4">
             <li *ngFor="let subroute of route.children">
               <a [routerLink]="subroute.path" class="block text-sm hover:bg-gray-600 px-4 py-2 rounded">{{ subroute.name }}</a>

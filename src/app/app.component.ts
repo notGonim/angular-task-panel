@@ -7,26 +7,13 @@ import { AuthService } from './feature/auth/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+ 
   headerTitle = 'Admin Panel'; 
   isSidebarCollapsed = false;  
-
   collapsed = true;
   isDesktop = window.innerWidth >= 1024;
 
-  onResize(event: any) {
-    this.isDesktop = event.target.innerWidth >= 1024;
-    if (this.isDesktop) {
-      this.collapsed = false; // Show the sidebar on desktop
-    }
-  }
-
-  onToggleSidebar() {
-    this.collapsed = !this.collapsed;
-  }
-
-
   constructor( private authService: AuthService) {}
-  
 
   ngOnInit() {
     window.addEventListener('resize', this.onResize.bind(this));
@@ -36,13 +23,26 @@ export class AppComponent {
     window.removeEventListener('resize', this.onResize.bind(this));
   }
 
+  // Handle window resize event
+  onResize(event: any) {
+    this.isDesktop = event.target.innerWidth >= 1024;
+    if (this.isDesktop) {
+      this.collapsed = false; 
+    }
+  }
+
+  // Toggle sidebar collapse state
+  onToggleSidebar() {
+    this.collapsed = !this.collapsed;
+  }
+
    // Routes for sidebar navigation
    routes = [
     {
       path: '/products',
       name: 'Products',
       children: [
-      
+      // if we need to add sub-routes it should be here 
       ]
     },
     { path: '/categories', name: 'Categories' },
@@ -53,6 +53,7 @@ export class AppComponent {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 
+  // check if the user is authenticated
 isAuthenticated(): boolean {
   return this.authService.isAuthenticated();
 }

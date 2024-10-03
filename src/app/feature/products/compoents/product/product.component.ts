@@ -42,7 +42,7 @@ export class ProductComponent implements OnInit {
         this.mode = 'view';
         this.productId = +this.route.snapshot.paramMap.get('id')!;
         this.loadProduct();
-        this.productForm.disable(); // Disable form in view mode
+        this.productForm.disable(); 
       }
     });
   }
@@ -73,12 +73,12 @@ export class ProductComponent implements OnInit {
     if (this.mode === 'add') {
       // Add product
       this.productService.addProduct(productData).subscribe((response) => {
-        this.router.navigate(['/products']); // Redirect to product list
+        this.router.navigate(['/products']); 
       });
     } else if (this.mode === 'edit' && this.productId) {
       // Edit product
       this.productService.updateProduct(this.productId, productData).subscribe((response) => {
-        this.router.navigate(['/products']); // Redirect to product list
+        this.router.navigate(['/products']); 
       });
     }
   }
