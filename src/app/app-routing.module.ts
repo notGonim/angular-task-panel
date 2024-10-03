@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -23,8 +24,9 @@ const routes: Routes = [
   },
   {
     path: '**',  
-    loadChildren: () => import('./core/core.module').then(m => m.CoreModule),
+    component: NotFoundComponent,
   }
+
 ];
 
 @NgModule({
