@@ -1,0 +1,29 @@
+<div [class.w-16]="collapsed" [class.w-64]="!collapsed" class="bg-gray-800 text-white h-screen flex flex-col transition-width duration-300">
+    <!-- Burger Menu -->
+    <div class="p-4">
+      <button (click)="onToggleSidebar()" class="text-white focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+  
+    <!-- Navigation Links -->
+    <nav class="flex-1 px-4">
+      <ul>
+        <li *ngFor="let route of routes" class="py-2">
+          <a [routerLink]="route.path" class="block text-sm hover:bg-gray-700 px-4 py-2 rounded">
+            <span *ngIf="!collapsed">{{ route.name }}</span>
+          </a>
+  
+          <!-- Handle Sub Routes -->
+          <ul *ngIf="route.children && !collapsed" class="ml-4">
+            <li *ngFor="let subroute of route.children">
+              <a [routerLink]="subroute.path" class="block text-sm hover:bg-gray-600 px-4 py-2 rounded">{{ subroute.name }}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  

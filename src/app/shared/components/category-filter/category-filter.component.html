@@ -1,0 +1,7 @@
+<div>
+    <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()" class="border px-4 py-2 rounded">
+      <option value="">All Categories</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+  

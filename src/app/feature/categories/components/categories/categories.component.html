@@ -1,0 +1,59 @@
+<div class="container mx-auto p-4">
+
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+
+    <h1 class="text-2xl font-bold mb-4">Categories</h1>
+    <button (click)="onAddCategory()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">
+        Add Category
+      </button>
+    
+
+    </div>
+     <!-- Breadcrumb -->
+     <nav class="text-sm mb-4 flex items-center space-x-2">
+        <a routerLink="/" class="text-blue-600 hover:underline">
+          <mat-icon aria-hidden="false" aria-label="Home icon">home</mat-icon>
+        </a>
+        <span class="text-gray-600">/ Categories</span>
+      </nav> 
+
+
+    <!-- Categories Table -->
+    <table class="min-w-full bg-white border">
+      <thead>
+        <tr>
+          <th class="py-2 px-4 border">Name</th>
+          <th class="py-2 px-4 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td class="py-2 px-4 border">
+            <a (click)="onViewCategory(category)" class="text-blue-500 cursor-pointer">{{ category }}</a>
+          </td>
+          <td class="py-2 px-4 border">
+            <!-- Edit Button -->
+            <button (click)="onEditCategory(category)" class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 mr-2">
+              Edit
+            </button>
+  
+            <!-- Delete Button -->
+            <button (click)="onDeleteCategory(category)" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+      <!-- Delete Confirmation Popup -->
+  <app-delete-confirmation
+  *ngIf="showDeletePopup"
+  [itemName]="categoryToDelete"
+  (confirmDelete)="confirmDelete()"
+  (cancelDelete)="cancelDelete()"
+></app-delete-confirmation>
+
+  </div>
+  
